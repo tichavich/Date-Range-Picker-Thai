@@ -3,8 +3,8 @@ DateRangePicker  ปฏิทินแบบไทยๆ
 
 
 ## References
-[GitHub daterangepicker](https://github.com/dangrossman/daterangepicker)
-[daterangepicker](https://www.daterangepicker.com/)
+1. [GitHub daterangepicker](https://github.com/dangrossman/daterangepicker)
+2. [daterangepicker](https://www.daterangepicker.com/)
 
 
 ## License
