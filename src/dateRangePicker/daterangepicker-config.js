@@ -61,9 +61,9 @@ const date_range_picker = {
 		'เดือนนี้': thaiDate.ranges.thisMonth(),
 		'ปีปัจจุบัน': thaiDate.ranges.lastYear(),
 	},
-	alwaysShowCalendars: true,
-    buddhistYear: true,     // ปี พ.ศ. custom เพิ่มเติม
+	alwaysShowCalendars: true,    
 	drops: 'down',
 	minYear: thaiDate.options.minYear,
 	maxYear: thaiDate.options.maxYear,
+    buddhistYear: true     // ปี พ.ศ.
 };
