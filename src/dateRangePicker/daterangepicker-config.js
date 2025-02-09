@@ -37,8 +37,7 @@ const thaiDate = {
 
 
 //options
-const date_range_dropdown = {
-	yearBuddhist: true,
+const date_range_dropdown = {	
 	showDropdowns: true,
 	autoApply: false,
 	showWeekNumbers: false,
@@ -62,7 +61,8 @@ const date_range_dropdown = {
 		'เดือนนี้': thaiDate.ranges.thisMonth(),
 		'ปีปัจจุบัน': thaiDate.ranges.lastYear(),
 	},
-	alwaysShowCalendars: false,
+	alwaysShowCalendars: true,
+    buddhistYear: true,     // ปี พ.ศ. custom เพิ่มเติม
 	drops: 'down',
 	minYear: thaiDate.options.minYear,
 	maxYear: thaiDate.options.maxYear,
