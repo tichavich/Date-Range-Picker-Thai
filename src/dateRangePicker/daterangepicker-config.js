@@ -37,7 +37,7 @@ const thaiDate = {
 
 
 //options
-const date_range_dropdown = {	
+const date_range_picker = {
 	showDropdowns: true,
 	autoApply: false,
 	showWeekNumbers: false,

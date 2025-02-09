@@ -91,7 +91,7 @@
         this.rightCalendar = {};
 
         //เปิดใช้งานปี buddhist
-        this.buddhistYear = false;
+        this.buddhistYear = true;
         
         //custom options from user
         if (typeof options !== 'object' || options === null)

@@ -10,11 +10,13 @@
 <script type="text/javascript" src="src/dateRangePicker/daterangepicker-custom.js"></script>
 <script type="text/javascript" src="src/dateRangePicker/daterangepicker-config.js"></script>
 ```
-## ปรับแก้อะไรใน Library (Date Range Picker)
-```
-buddhistYear // เพิ่ม option
 
-```
+## ปรับแก้อะไรใน Library (Date Range Picker)
+1. เพิ่ม options เปิดใช้งานปีพุทธศักราช buddhistYear ค่าเริ่มต้นเป็น true
+![กำหนดค่า true](images/image.png)
+
+2. ปรับ CSS ให้มีเรียกใช้ชุดสีผ่าน var() ที่มีการตั้งค่า theme
+![เรียกใช้ theme](images/image-1.png)
 
 ## ตัวอย่างการนำไปใช้
 https://tichavich.github.io/Date-Range-Picker-Thai/
