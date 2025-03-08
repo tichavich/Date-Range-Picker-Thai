@@ -551,20 +551,8 @@
               let hook_start_date = this.startDate;
               let hook_end_date = this.endDate;
               let add_year = (this.buddhistYear === true) ? 543 : 0;
-              let new_start_date,new_end_date = '';
-              if (parseInt(hook_start_date.format('YYYY')) < moment().year() + add_year) {
-				        new_start_date = hook_start_date.format(this.locale.format).replace(/\d{4}/, parseInt(hook_start_date.format('YYYY')) + add_year);
-              } else {
-                new_start_date = hook_start_date.format(this.locale.format);
-              }
-
-              if (parseInt(hook_end_date.format('YYYY')) < moment().year() + add_year) {
-                new_end_date = hook_end_date.format(this.locale.format).replace(/\d{4}/, parseInt(hook_end_date.format('YYYY')) + add_year);
-              } else {
-                new_end_date = hook_end_date.format(this.locale.format);
-              }
-
-              let view_start_date,view_end_date = '';
+              let view_start_date = '';
+              let view_end_date = '';
               if (parseInt(hook_start_date.format('YYYY')) < moment().year() + add_year) {
                 view_start_date = hook_start_date.format(this.locale.calendarFormat).replace(/\d{4}/, parseInt(hook_start_date.format('YYYY')) + add_year);
               } else {
@@ -1592,13 +1580,32 @@
 
         updateElement: function() {
             if (this.element.is('input') && this.autoUpdateInput) {
-                var newValue = this.startDate.format(this.locale.format);
+                let add_year = (this.buddhistYear === true) ? 543 : 0;
+                let hook_start_date = this.startDate;
+                let hook_end_date = this.endDate;
+                let new_start_date = '';
+                let new_end_date = '';
+
+                if (parseInt(hook_start_date.format('YYYY')) < moment().year() + add_year) {
+                    new_start_date = hook_start_date.format(this.locale.format).replace(/\d{4}/, parseInt(hook_start_date.format('YYYY')) + add_year);
+                } else {
+                    new_start_date = hook_start_date.format(this.locale.format);
+                }
+
+                if (parseInt(hook_end_date.format('YYYY')) < moment().year() + add_year) {
+                    new_end_date = hook_end_date.format(this.locale.format).replace(/\d{4}/, parseInt(hook_end_date.format('YYYY')) + add_year);
+                } else {
+                    new_end_date = hook_end_date.format(this.locale.format);
+                }
+
+                var newValue = new_start_date;
                 if (!this.singleDatePicker) {
-                    newValue += this.locale.separator + this.endDate.format(this.locale.format);
+                    newValue += this.locale.separator + new_end_date;
                 }
                 if (newValue !== this.element.val()) {
                     this.element.val(newValue).trigger('change');
                 }
+                console.log('newValue', newValue);
             }
         },
 

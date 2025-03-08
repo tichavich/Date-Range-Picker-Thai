@@ -13,7 +13,7 @@
 
 ## ปรับแก้อะไรใน Library (Date Range Picker)
 1. เพิ่ม options เปิดใช้งานปีพุทธศักราช ***buddhistYear*** ค่าเริ่มต้นเป็น **true**
-![กำหนดค่า true](images/image.png)
+![กำหนดค่า true](image.png)
 
 2. ปรับ CSS ให้มีเรียกใช้ชุดสีผ่าน var() ที่มีการตั้งค่า theme
 ![เรียกใช้ theme](images/image-1.png)

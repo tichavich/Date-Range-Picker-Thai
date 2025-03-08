@@ -44,7 +44,39 @@ const date_range_picker = {
 	autoUpdateInput: true,
 	linkedCalendars: false,
 	locale: {
-		format: 'YYYY-MM-DD',
+		format: 'DD/MM/YYYY',
+		calendarFormat: 'DD MMMM YYYY',
+		separator: ',',
+		calendarSeparator: ' - ',
+		applyLabel: 'นำไปใช้',
+		cancelLabel: 'ยกเลิก',
+		customRangeLabel: 'กำหนดเอง',
+		monthNames: thaiDate.options.months,
+		firstDay: 1
+	},
+	ranges: {
+		'วันนี้': thaiDate.ranges.today(),
+		'เมื่อวาน': thaiDate.ranges.yesterday(),
+		'7 วันที่แล้ว': thaiDate.ranges.lastday(7),
+		'เดือนนี้': thaiDate.ranges.thisMonth(),
+		'ปีปัจจุบัน': thaiDate.ranges.lastYear(),
+	},
+	alwaysShowCalendars: true,    
+	drops: 'down',
+	minYear: thaiDate.options.minYear,
+	maxYear: thaiDate.options.maxYear,
+    buddhistYear: true     // ปี พ.ศ.
+};
+
+const date_range_picker_single = {
+	showDropdowns: true,
+	autoApply: false,
+	showWeekNumbers: false,
+	autoUpdateInput: true,
+	linkedCalendars: false,
+    singleDatePicker: true,
+	locale: {
+		format: 'DD/MM/YYYY',
 		calendarFormat: 'DD MMMM YYYY',
 		separator: ',',
 		calendarSeparator: ' - ',

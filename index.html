@@ -22,6 +22,12 @@
         body{
             background-color: #f8f6f6;
         }
+        .color-brown{
+            color: #54473f;
+        }
+        .color-dark-blue{
+            color:#1e3e62;
+        }
         pre {
             max-width: 100%;
             max-height: 400px;
@@ -35,28 +41,81 @@
     <div class="col-lg-8 mx-auto p-3 py-md-5">
         <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
             <a href="javascript:void(0);" class="d-flex align-items-center text-dark text-decoration-none">
-                <span class="fs-2 fw-bold">📆 Date Range Picker Thai</span>
+                <span class="fs-2 fw-bold">📆 Date Range Picker Thai ปฏิทินไทย เป็นแบบพุทธศักราช</span>
             </a>
         </header>
         <main>
-            <div class="row mb-2">
-                <div class="col-6">
-                    <input class="form-control" type="text" name="date_range_picker" readonly>
-                </div>
-            </div>
             <div class="row mb-5">
                 <div class="col-12">
-                <h3>ตัวอย่าง Options การตั้งค่าพื้นฐานสำหรับใช้งาน DateRangePicker</h3>
+                <p class="color-brown fw-bold mt-2">Class ที่ใช้เตรียมการตั้งค่าพื้นฐานปฏิทินไทย</p>
 <pre class="rounded-3">
     <code class="language-javascript">
-        const date_range_picker = {	
+        const thaiDate = {
+            options: {
+                week: ["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],
+                months: ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"],
+                monthsShort: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."],
+                minYear: moment().year()-10,
+                maxYear: moment().year()+8,
+            },
+            ranges: {
+                today: ()=>{
+                    return [moment().startOf('day'), moment().endOf('day')];
+                },
+                yesterday: ()=>{
+                    return [moment().subtract(1, 'days').startOf('day'), moment().subtract(1, 'days').endOf('day')];
+                },
+                lastday: (day)=>{
+                    return [moment().subtract(parseInt(day), 'days').startOf('day'), moment().endOf('day')];
+                },
+                nextday: (day)=>{
+                    return [moment().startOf('day'), moment().add(parseInt(day), 'days').endOf('day')];
+                },
+                thisMonth: ()=>{
+                    return [moment().startOf('months'), moment().endOf('months')];
+                },
+                lastMonth: ()=>{
+                    return [moment().startOf('months').subtract(1, 'months'),moment().endOf('months').subtract(1, 'months')];
+                },
+                lastYear: ()=>{
+                    return [moment().startOf('months').subtract(1, 'years'), moment().endOf('months')];
+                },
+                yearAgo: (year)=>{
+                    return [moment().month(9).startOf('months').subtract(parseInt(year),'years'), moment().month(8).endOf('months')];
+                }
+            }
+        }
+    </code>
+</pre>
+                </div>
+            </div>
+
+            <h4 class="fw-bold color-dark-blue">แบบที่ 1 ปฏิทินไทย (Single)</h4>
+            <div style="text-indent: 2em;">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3 row">
+                            <label for="date_range_picker_single" class="col-md-4 col-form-label">ช่วงวันที่</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="date_range_picker_single" id="date_range_picker_single" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                    <p class="color-brown fw-bold mt-2">## Options แบบช่วงวันที่</p>
+<pre class="rounded-3">
+    <code class="language-javascript">
+        const date_range_picker = {
             showDropdowns: true,
             autoApply: false,
             showWeekNumbers: false,
             autoUpdateInput: true,
             linkedCalendars: false,
             locale: {
-                format: 'YYYY-MM-DD',
+                format: 'DD/MM/YYYY',
                 calendarFormat: 'DD MMMM YYYY',
                 separator: ',',
                 calendarSeparator: ' - ',
@@ -73,7 +132,7 @@
                 'เดือนนี้': thaiDate.ranges.thisMonth(),
                 'ปีปัจจุบัน': thaiDate.ranges.lastYear(),
             },
-            alwaysShowCalendars: true,
+            alwaysShowCalendars: true,    
             drops: 'down',
             minYear: thaiDate.options.minYear,
             maxYear: thaiDate.options.maxYear,
@@ -81,11 +140,95 @@
         };
     </code>
 </pre>
+                    </div>
                 </div>
+            
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <p class="color-brown fw-bold mt-2">## ใส่ค่า Options</p>
+<pre class="rounded-3">
+    <code class="language-javascript">
+        moment.locale('th');
+        $('input[name="date_range_picker_single"]').daterangepicker(date_range_picker_single);
+    </code>
+</pre>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <br>
+            <h4 class="fw-bold color-dark-blue">แบบที่ 2 ปฏิทินไทย (Multiple)</h4>
+            <div style="text-indent: 2em;">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3 row">
+                            <label for="date_range_picker" class="col-md-4 col-form-label">ช่วงวันที่</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="date_range_picker" id="date_range_picker" readonly>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                    <p class="color-brown fw-bold mt-2">## Options แบบช่วงวันที่</p>
+<pre class="rounded-3">
+    <code class="language-javascript">
+        const date_range_picker_single = {
+            showDropdowns: true,
+            autoApply: false,
+            showWeekNumbers: false,
+            autoUpdateInput: true,
+            linkedCalendars: false,
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY',
+                calendarFormat: 'DD MMMM YYYY',
+                separator: ',',
+                calendarSeparator: ' - ',
+                applyLabel: 'นำไปใช้',
+                cancelLabel: 'ยกเลิก',
+                customRangeLabel: 'กำหนดเอง',
+                monthNames: thaiDate.options.months,
+                firstDay: 1
+            },
+            ranges: {
+                'วันนี้': thaiDate.ranges.today(),
+                'เมื่อวาน': thaiDate.ranges.yesterday(),
+                '7 วันที่แล้ว': thaiDate.ranges.lastday(7),
+                'เดือนนี้': thaiDate.ranges.thisMonth(),
+                'ปีปัจจุบัน': thaiDate.ranges.lastYear(),
+            },
+            alwaysShowCalendars: true,    
+            drops: 'down',
+            minYear: thaiDate.options.minYear,
+            maxYear: thaiDate.options.maxYear,
+            buddhistYear: true     // ปี พ.ศ.
+        };
+    </code>
+</pre>
+                    </div>
+                </div>
+            
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <p class="color-brown fw-bold mt-2">## ใส่ค่า Options</p>
+<pre class="rounded-3">
+    <code class="language-javascript">
+        moment.locale('th');
+        $('input[name="date_range_picker"]').daterangepicker(date_range_picker);        
+    </code>
+</pre>
+                    </div>
+                </div>
+
             </div>
         </main>
         <footer class="pt-5 my-5 text-muted border-top">
-            Created by <a href="mailto:tichavich@live.com">Tichavich</a> &copy; 2025
+            Created by <a href="mailto:tichavich@gmail.com">Tichavich Chusakul</a> &copy; 2025 Date Range Picker Thai
         </footer>
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -99,6 +242,7 @@
     <script>
         moment.locale('th');
         $('input[name="date_range_picker"]').daterangepicker(date_range_picker);
+        $('input[name="date_range_picker_single"]').daterangepicker(date_range_picker_single);
     </script>
 
 </body>
